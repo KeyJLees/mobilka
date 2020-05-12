@@ -3,19 +3,30 @@ package com.blogspot.atifsoftwares.imagepick_kotlin
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.jar.Manifest
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.util.Calendar;
+
+
 
 
 class MainActivity : AppCompatActivity() {
 
+    private val IMAGE_PICK_CODE = 1;
+    private val CAMERA = 2;
     private val CAMERA_PERMISSION_CODE = 100;
     private val STORAGE_PERMISSION_CODE = 101;
+    private val imageview: ImageView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,8 +34,13 @@ class MainActivity : AppCompatActivity() {
         img_pick_btn.setOnClickListener {
             checkPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
                     //permission already granted
-                    pickImageFromGallery();
+                    pickImageFromGallery(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 }
+        img_pick_btn2.setOnClickListener {
+            checkPermission(android.Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE)
+            //permission already granted
+            takePhoto(android.Manifest.permission.CAMERA);
+        }
 
         rotate_img_right.setOnClickListener {
 
@@ -117,11 +133,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun pickImageFromGallery() {
-        //Intent to pick image
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
+    private fun takePhoto(permission: String){
+        if (ContextCompat.checkSelfPermission(
+                this@MainActivity,
+                permission
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, CAMERA)
+        }
+    }
+
+
+    private fun pickImageFromGallery(permission: String) {
+        if (ContextCompat.checkSelfPermission(
+                this@MainActivity,
+                permission
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            val gallaryintent = Intent(Intent.ACTION_PICK)
+            gallaryintent.type = "image/*"
+            startActivityForResult(gallaryintent, IMAGE_PICK_CODE)
+        }
     }
 
     var angle:Float=0F
@@ -136,21 +171,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    companion object {
-        //image pick code
-        private val IMAGE_PICK_CODE = 1000;
-        //Permission code
-        private val PERMISSION_CODE = 1001;
-    }
-
-    //handle requested permission result
-
-
     //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             image_view.setImageURI(data?.data)
         }
+        else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA){
+            val thumbnail = data!!.extras!!["data"] as Bitmap
+            image_view.setImageBitmap(thumbnail);
+        }
     }
+
+
 }
