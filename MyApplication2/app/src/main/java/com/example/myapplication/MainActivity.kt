@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ImageView
@@ -12,11 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.util.Calendar;
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val CAMERA_PERMISSION_CODE = 100;
     private val STORAGE_PERMISSION_CODE = 101;
     private val imageview: ImageView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,15 +39,9 @@ class MainActivity : AppCompatActivity() {
             takePhoto(android.Manifest.permission.CAMERA);
         }
 
-        rotate_img_right.setOnClickListener {
-
-            rotateImageRight();
-        }
-
-
         rotate_img_left.setOnClickListener {
 
-            rotateImageLeft();
+            roateImage(image_view);
         }
 
     }
@@ -159,19 +150,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var angle:Float=0F
-    private fun rotateImageRight() {
-        angle=angle+90F
-        image_view.setRotation(angle);
+    private fun roateImage(view: ImageView) {
+
+        val bmap: Bitmap = (view.getDrawable() as BitmapDrawable).bitmap
+        val width: Int = bmap.width
+        val height: Int = bmap.height
+        val mybmap: Bitmap = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888)
+        val sin: Int = 1
+        val cos: Int = 0
+        val x0 = 0.5 * (width - 1)
+        val y0 = 0.5 * (height - 1)
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                val a = x - x0
+                val b = y - y0
+                val xx = (+a * cos - b * sin + x0).toInt()
+                val yy = (+a * sin + b * cos + y0).toInt()
+                if (xx >= 0 && xx < width && yy >= 0 && yy < height) {
+                    mybmap.setPixel(x, y, bmap.getPixel(xx, yy))
+                }
+            }
+        }
+        image_view.setImageBitmap(mybmap);
     }
 
-    private fun rotateImageLeft() {
-        angle=angle-90F
-        image_view.setRotation(angle);
-    }
-
-
-    //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){

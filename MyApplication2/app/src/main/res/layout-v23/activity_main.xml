@@ -13,19 +13,19 @@
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="334dp"
+        android:layout_width="382dp"
         android:layout_height="382dp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
-        android:scaleType="fitXY"
         android:contentDescription="@string/desc"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_image_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="464dp"
-        android:layout_height="163dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/img_pick_btn2"
@@ -50,41 +50,26 @@
             android:layout_marginTop="40dp"
             android:text="gallary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.261"
+            app:layout_constraintHorizontal_bias="0.191"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="242dp"
-        android:layout_height="148dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-        <Button
-            android:id="@+id/rotate_img_right"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="56dp"
-            android:background="#FFFFFF"
-            android:foreground="@drawable/ic_rotate_right_black_24dp"
-            android:src="@drawable/ic_rotate_right_black_24dp"
             tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/rotate_img_left"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="0dp"
+            android:layout_marginTop="116dp"
             android:background="#FFFFFF"
             android:foreground="@drawable/ic_rotate_left_black_24dp"
             android:src="@drawable/ic_rotate_left_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>
