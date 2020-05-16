@@ -1,80 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/back"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/s12001"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="382dp"
-        android:layout_height="382dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:contentDescription="@string/desc"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_image_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/img_pick_btn2"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:text="camera"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+
+    <LinearLayout
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/s12001"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="382dp"
+            android:layout_height="382dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/desc"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_image_black_24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintStart_toEndOf="@+id/img_pick_btn"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintStart_toStartOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/img_pick_btn"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:text="gallary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.191"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/img_pick_btn2"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="camera"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.067"
+                app:layout_constraintStart_toEndOf="@+id/img_pick_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
-        <Button
-            android:id="@+id/rotate_img_left"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="116dp"
-            android:background="#FFFFFF"
-            android:foreground="@drawable/ic_rotate_left_black_24dp"
-            android:src="@drawable/ic_rotate_left_black_24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/img_pick_btn"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="gallary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.191"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/rotate_img_left"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="116dp"
+                android:background="#FFFFFF"
+                android:foreground="@drawable/ic_rotate_left_black_24dp"
+                android:src="@drawable/ic_rotate_left_black_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.473"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+    </LinearLayout>
 
-
-
-
-
+</androidx.drawerlayout.widget.DrawerLayout>
