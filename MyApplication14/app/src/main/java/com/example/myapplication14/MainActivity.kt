@@ -358,4 +358,26 @@ class MainActivity : AppCompatActivity() {
             }
         image_view.setImageBitmap(bmp);
     }
+
+    private fun mashtab(koef: Double) {
+        val bmap: Bitmap = gbmap
+        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+        val displayMetrics: DisplayMetrics = resources.displayMetrics
+        val mImageWidth = displayMetrics.widthPixels
+        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
+
+        val nWidth: Int = (mBitmap.width * koef).toInt()
+        val nHeight: Int = (mBitmap.height * koef).toInt()
+        val bmp: Bitmap = Bitmap.createBitmap(nWidth, nHeight, mBitmap.config)
+
+        for (y in 0 until nHeight)
+            for (x in 0 until nWidth) {
+                val r = mBitmap.getPixel((x / koef).toInt(), (y/koef).toInt())
+                bmp.setPixel(x, y, r)
+            }
+        gbmap = bmap
+        image_view.setImageBitmap(bmp);
+    }
+
 }

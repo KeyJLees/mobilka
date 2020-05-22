@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
@@ -418,6 +419,25 @@ class MainActivity : AppCompatActivity() {
                 val green = (r * 0.349 + g * 0.686 + b * 0.168).toInt()
                 val blue = (r * 0.272 + g * 0.534 + b * 0.131).toInt()
                 bmp.setPixel(x,y,Color.rgb(red, green, blue))
+            }
+        image_view.setImageBitmap(bmp);
+    }
+
+    private fun mashtab(koef: Int) {
+        val bmap: Bitmap = gbmap
+        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+        val displayMetrics: DisplayMetrics = resources.displayMetrics
+        val mImageWidth = displayMetrics.widthPixels
+        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
+
+        val nWidth: Int = mBitmap.width * koef
+        val nHeight: Int = mBitmap.height * koef
+        val bmp: Bitmap = Bitmap.createBitmap(nWidth, nHeight, mBitmap.config)
+
+        for (y in 0 until nHeight)
+            for (x in 0 until nWidth) {
+
             }
         image_view.setImageBitmap(bmp);
     }
