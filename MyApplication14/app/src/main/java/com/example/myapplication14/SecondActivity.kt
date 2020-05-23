@@ -3,20 +3,16 @@ package com.example.myapplication14
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.media.Image
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.DisplayMetrics
 import android.view.View
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.filters_main.*
-import kotlinx.android.synthetic.main.filters_main.image_view
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -31,11 +27,8 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.filters_main)
 
-        val bitmap = intent.getParcelableExtra("Image") as Bitmap
-
-        image_scaling.setOnClickListener {
-            mashtab(edit_text2.text.toString().toDouble())
-        }
+        val gbmap = roflan.bitmap
+        image_view2.setImageBitmap(gbmap);
 
     }
 
