@@ -21,11 +21,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.io.ByteArrayOutputStream
 import kotlin.math.*
 
-class roflan(){
-
-    companion object{lateinit var bitmap: Bitmap}
-
-}
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,10 +59,10 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun nextSlide(view: View)
     {
-        val intent = Intent(this, SecondActivity::class.java)
+        val i = Intent(this, SecondActivity::class.java)
         val bmap: Bitmap = (image_view.drawable as BitmapDrawable).bitmap
-        roflan.bitmap = bmap
-        startActivity(intent)
+        i.putExtra("Image", bmap);
+        startActivity(i)
     }
 
     private fun checkPermission(permission: String, requestCode: Int) {
