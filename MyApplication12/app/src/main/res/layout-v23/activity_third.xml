@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/f25201"
+    android:layout_height="match_parent"
+    tools:context=".ThirdActivity">
+
+    <ImageView
+        android:id="@+id/image_view2"
+        android:layout_width="382dp"
+        android:layout_height="382dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/desc"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_image_blacck_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/prev_Slide"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@null"
+        android:foreground="@drawable/ic_navigate_before_black_24dp"
+        android:onClick="prevSlide2"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="569dp"
+        tools:ignore="MissingConstraints" />
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
