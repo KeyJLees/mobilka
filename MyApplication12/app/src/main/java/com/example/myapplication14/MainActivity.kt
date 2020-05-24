@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     private val CAMERA_PERMISSION_CODE = 100;
     private val STORAGE_PERMISSION_CODE = 101;
     private lateinit var gbmap: Bitmap
-    private var brightt: Double = 1.0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,8 +64,13 @@ class MainActivity : AppCompatActivity() {
     fun nextSlide(view: View)
     {
         val intent = Intent(this, SecondActivity::class.java)
-        val bmap: Bitmap = (image_view.drawable as BitmapDrawable).bitmap
-        roflan.bitmap = bmap
+        val bmap: Bitmap = (image_view.getDrawable() as BitmapDrawable).bitmap
+        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+        val displayMetrics: DisplayMetrics = resources.displayMetrics
+        val mImageWidth = displayMetrics.widthPixels
+        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
+        roflan.bitmap = mBitmap
         startActivity(intent)
     }
 

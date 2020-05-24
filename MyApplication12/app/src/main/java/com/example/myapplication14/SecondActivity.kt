@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.DisplayMetrics
 import android.view.View
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
@@ -20,15 +21,15 @@ import kotlin.math.roundToInt
 
 class SecondActivity : AppCompatActivity() {
 
-    private lateinit var gbmap: Bitmap
     private var brightt: Double = 1.0
+    private lateinit var ggbmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.filters_main)
 
-        val gbmap = roflan.bitmap
-        image_view2.setImageBitmap(gbmap);
+        ggbmap = roflan.bitmap
+        image_view2.setImageBitmap(ggbmap);
 
 
         button3.setOnClickListener {
@@ -51,6 +52,21 @@ class SecondActivity : AppCompatActivity() {
             mashtab(edit_text2.text.toString().toDouble())
         }
 
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+                bright(seekBar.progress / 10.0)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+            }
+        })
+
     }
 
     fun prevSlide(view: View)
@@ -69,7 +85,7 @@ class SecondActivity : AppCompatActivity() {
 
     private fun bright(brightness: Double) {
         brightt = brightness
-        val bmap: Bitmap = gbmap
+        val bmap: Bitmap = ggbmap
         val aspectRatio: Float = bmap.height.toFloat() / bmap.width
         val displayMetrics: DisplayMetrics = resources.displayMetrics
         val mImageWidth = displayMetrics.widthPixels
@@ -96,7 +112,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun negative() {
-        val bmap: Bitmap = gbmap
+        val bmap: Bitmap = ggbmap
         val aspectRatio: Float = bmap.height.toFloat() / bmap.width
         val displayMetrics: DisplayMetrics = resources.displayMetrics
         val mImageWidth = displayMetrics.widthPixels
@@ -118,7 +134,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun whiteblack() {
-        val bmap: Bitmap = gbmap
+        val bmap: Bitmap = ggbmap
         val aspectRatio: Float = bmap.height.toFloat() / bmap.width
         val displayMetrics: DisplayMetrics = resources.displayMetrics
         val mImageWidth = displayMetrics.widthPixels
@@ -147,7 +163,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun gray() {
-        val bmap: Bitmap = gbmap
+        val bmap: Bitmap = ggbmap
         val aspectRatio: Float = bmap.height.toFloat() / bmap.width
         val displayMetrics: DisplayMetrics = resources.displayMetrics
         val mImageWidth = displayMetrics.widthPixels
@@ -170,7 +186,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun sepia() {
-        val bmap: Bitmap = gbmap
+        val bmap: Bitmap = ggbmap
         val aspectRatio: Float = bmap.height.toFloat() / bmap.width
         val displayMetrics: DisplayMetrics = resources.displayMetrics
         val mImageWidth = displayMetrics.widthPixels
@@ -195,7 +211,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun mashtab(koef: Double) {
-        val bmap: Bitmap = gbmap
+        val bmap: Bitmap = ggbmap
         val aspectRatio: Float = bmap.height.toFloat() / bmap.width
         val displayMetrics: DisplayMetrics = resources.displayMetrics
         val mImageWidth = displayMetrics.widthPixels
@@ -211,7 +227,7 @@ class SecondActivity : AppCompatActivity() {
                 val r = mBitmap.getPixel((x / koef).toInt(), (y/koef).toInt())
                 bmp.setPixel(x, y, r)
             }
-        gbmap = bmap
+        ggbmap = bmap
         image_view2.setImageBitmap(bmp);
     }
 

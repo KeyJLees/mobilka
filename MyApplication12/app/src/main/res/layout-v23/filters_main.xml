@@ -6,44 +6,47 @@
     android:layout_height="match_parent"
     android:background="@drawable/f5">
 
+
     <ImageView
         android:id="@+id/image_view2"
-        android:layout_width="382dp"
-        android:layout_height="382dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="76dp"
         android:contentDescription="@string/desc"
         android:scaleType="fitXY"
         android:src="@drawable/ic_image_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
 
     <Button
         android:id="@+id/next_slide"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="80dp"
         android:background="@null"
         android:foreground="@drawable/ic_navigate_next_black_24dp"
         android:onClick="nextSlide2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="308dp"
-        tools:layout_editor_absoluteY="569dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_scaling"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/prev_Slide"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="80dp"
         android:background="@null"
         android:foreground="@drawable/ic2_navigate_before_black_24dp"
         android:onClick="prevSlide"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="569dp" />
+        tools:layout_editor_absoluteX="35dp" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -112,30 +115,41 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="20dp"
         android:text="Введите коэф. масштабирования:"
         android:textSize="17sp"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="518dp"
+        app:layout_constraintBottom_toTopOf="@+id/image_scaling"
+        app:layout_constraintEnd_toStartOf="@+id/edit_text2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/edit_text2"
         android:layout_width="60dp"
         android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:inputType="text"
-        tools:ignore="HardcodedText,LabelFor,MissingConstraints"
-        tools:layout_editor_absoluteX="297dp"
-        tools:layout_editor_absoluteY="508dp" />
+        app:layout_constraintBottom_toTopOf="@+id/image_scaling"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText,LabelFor,MissingConstraints" />
 
     <Button
         android:id="@+id/image_scaling"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="80dp"
         android:foreground="@drawable/i1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="569dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintStart_toEndOf="@+id/prev_Slide"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
