@@ -8,7 +8,7 @@
     tools:context=".ThirdActivity">
 
     <ImageView
-        android:id="@+id/image_view2"
+        android:id="@+id/image_view3"
         android:layout_width="382dp"
         android:layout_height="382dp"
         android:layout_gravity="center"
@@ -28,11 +28,15 @@
         android:id="@+id/prev_Slide"
         android:layout_width="75dp"
         android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="181dp"
+        android:layout_marginEnd="320dp"
         android:background="@null"
         android:foreground="@drawable/ic_navigate_before_black_24dp"
         android:onClick="prevSlide2"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="569dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_view3"
         tools:ignore="MissingConstraints" />
     
 </androidx.constraintlayout.widget.ConstraintLayout>

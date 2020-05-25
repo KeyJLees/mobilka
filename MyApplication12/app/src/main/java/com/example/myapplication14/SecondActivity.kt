@@ -3,16 +3,19 @@ package com.example.myapplication14
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.media.Image
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.filters_main.*
 import kotlin.math.max
 import kotlin.math.min
@@ -23,7 +26,6 @@ class SecondActivity : AppCompatActivity() {
 
     private var brightt: Double = 1.0
     private lateinit var ggbmap: Bitmap
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.filters_main)
@@ -49,7 +51,17 @@ class SecondActivity : AppCompatActivity() {
         }
 
         image_scaling.setOnClickListener {
+            val msg: String = edit_text2.text.toString()
+            if(msg.trim().isNotEmpty())
             mashtab(edit_text2.text.toString().toDouble())
+            else
+            {
+                Toast.makeText(
+                    this,
+                    "Scaling factor not entered",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -71,15 +83,29 @@ class SecondActivity : AppCompatActivity() {
 
     fun prevSlide(view: View)
     {
-        val randomIntent= Intent(this,MainActivity::class.java)
-        startActivity(randomIntent)
+        val intent = Intent(this, MainActivity::class.java)
+        val bmap: Bitmap = (image_view2.getDrawable() as BitmapDrawable).bitmap
+        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+        val displayMetrics: DisplayMetrics = resources.displayMetrics
+        val mImageWidth = displayMetrics.widthPixels
+        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
+        roflan.bitmap = mBitmap
+        startActivity(intent)
     }
 
 
     fun nextSlide2(view: View)
     {
-        val randomIntent= Intent(this,ThirdActivity::class.java)
-        startActivity(randomIntent)
+        val intent = Intent(this, ThirdActivity::class.java)
+        val bmap: Bitmap = (image_view2.getDrawable() as BitmapDrawable).bitmap
+        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+        val displayMetrics: DisplayMetrics = resources.displayMetrics
+        val mImageWidth = displayMetrics.widthPixels
+        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
+        roflan.bitmap = mBitmap
+        startActivity(intent)
     }
 
 
