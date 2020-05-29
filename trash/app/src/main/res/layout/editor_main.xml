@@ -8,7 +8,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="200dp"
+        android:background="@drawable/ic_wave3"
+        ></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+
         android:gravity="center"
         android:orientation="horizontal"
         tools:ignore="MissingConstraints"
@@ -16,10 +23,9 @@
         tools:layout_editor_absoluteY="1dp">
 
         <ImageView
+            android:id="@+id/image_view2"
             android:layout_width="350dp"
             android:layout_height="350dp"
-            android:id="@+id/image_view"
-            android:layout_marginTop="22dp"
             android:background="@drawable/ic_148711"
             android:contentDescription="TODO" />
     </LinearLayout>
@@ -35,25 +41,28 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="60dp"
-            android:background="@drawable/ic_filters"
+            android:background="@color/lightgray"
+            android:foreground="@drawable/ic_filters"
             android:layout_marginLeft="60dp" />
 
         <Button
             android:id="@+id/btn_rotate"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:background="@color/lightgray"
             android:layout_marginLeft="50dp"
             android:layout_marginBottom="150dp"
-            android:background="@drawable/ic_457711"
+            android:foreground="@drawable/ic_457711"
             android:layout_marginStart="50dp" />
 
         <Button
             android:id="@+id/btn_scaling"
             android:layout_width="40dp"
+            android:foreground="@drawable/maximize_icon"
             android:layout_height="40dp"
             android:layout_marginLeft="50dp"
             android:layout_marginBottom="150dp"
-            android:background="@drawable/maximize_icon"
+            android:background="@color/lightgray"
             android:layout_marginStart="50dp" />
 
 
