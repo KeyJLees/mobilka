@@ -34,6 +34,9 @@ class MainActivity : AppCompatActivity() {
     private val CAMERA_PERMISSION_CODE = 100;
     private val STORAGE_PERMISSION_CODE = 101;
     private lateinit var gbmap: Bitmap
+    private var f = false
+    private var t = false
+    private var l = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +57,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         rotate_img_left.setOnClickListener {
-            rottateImage(image_view,360-edit_text.text.toString().toInt());
+            if(l == true && edit_text.text.isNotEmpty()) {
+                rottateImage(image_view, 360 - edit_text.text.toString().toInt());
+            }
         }
 
     }
@@ -63,15 +68,16 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun nextSlide(view: View)
     {
-        val intent = Intent(this, SecondActivity::class.java)
-        val bmap: Bitmap = (image_view.getDrawable() as BitmapDrawable).bitmap
-        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
-        val displayMetrics: DisplayMetrics = resources.displayMetrics
-        val mImageWidth = displayMetrics.widthPixels
-        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
-        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
-        roflan.bitmap = mBitmap
-        startActivity(intent)
+        if (l == true) {
+            val intent = Intent(this, SecondActivity::class.java)
+            val bmap: Bitmap = (image_view.getDrawable() as BitmapDrawable).bitmap
+            val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+            val mImageWidth = 700
+            val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+            val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
+            roflan.bitmap = mBitmap
+            startActivity(intent)
+        }
     }
 
     private fun checkPermission(permission: String, requestCode: Int) {
@@ -189,6 +195,7 @@ class MainActivity : AppCompatActivity() {
             image_view.setImageBitmap(thumbnail);
             gbmap = (image_view.getDrawable() as BitmapDrawable).bitmap
         }
+        l = true
     }
 
     private fun rottateImage(view: ImageView, degrees: Int) {

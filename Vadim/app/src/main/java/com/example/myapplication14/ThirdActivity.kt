@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.filters_main.*
 import java.util.*
 
 
-class ThirdActivity : AppCompatActivity(){
+class ThirdActivity : AppCompatActivity(), View.OnTouchListener{
+
 
     var graphView: GraphView? = null
 
@@ -32,8 +33,18 @@ class ThirdActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_third)
+        graphView = findViewById(R.id.graph)
+
+        graphView!!.viewport.isXAxisBoundsManual = true
+        graphView!!.viewport.setMinX(0.0)
+        graphView!!.viewport.setMaxX(10.0)
+
+        graphView!!.viewport.isYAxisBoundsManual = true
+        graphView!!.viewport.setMinY(0.0)
+        graphView!!.viewport.setMaxY(10.0)
 
         button.setOnClickListener {
+
             val mas_3 = arrayOfNulls<V>(mas.capacity())
 
             for (i in 0 until mas.capacity()) mas_3[i] = mas[i]
@@ -61,7 +72,7 @@ class ThirdActivity : AppCompatActivity(){
                         )
                     graphView!!.addSeries(series2)
                     series2.shape = PointsGraphSeries.Shape.POINT
-                    series2.color = Color.WHITE
+                    series2.color = Color.BLACK
                     series2.size = 4f
                     g = (g + 0.01).toFloat()
                 }
@@ -117,7 +128,7 @@ class ThirdActivity : AppCompatActivity(){
 
         }
 
-        button3.setOnClickListener {
+        button7.setOnClickListener {
             graphView!!.removeAllSeries();
             mas.clear();
             graphView!!.getViewport().setMinX(0.0);
@@ -126,16 +137,7 @@ class ThirdActivity : AppCompatActivity(){
             graphView!!.getViewport().setMaxY(10.0);
         }
 
-
-
-
-        graphView!!.viewport.isXAxisBoundsManual = true
-        graphView!!.viewport.setMinX(0.0)
-        graphView!!.viewport.setMaxX(10.0)
-
-        graphView!!.viewport.isYAxisBoundsManual = true
-        graphView!!.viewport.setMinY(0.0)
-        graphView!!.viewport.setMaxY(10.0)
+        graph.setOnTouchListener(this);
 
     }
 
@@ -158,12 +160,12 @@ class ThirdActivity : AppCompatActivity(){
         return result
     }
 
-    private fun onTouch(v: View?, event: MotionEvent): Boolean {
-        X = event.x
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        X = event!!.x
         Y = event.y
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                val id = V()
+                val id = ThirdActivity.V()
                 id.X = (X / 100 - 0.25).toFloat()
                 id.Y = (10 - Y / 100 - 0.25).toFloat()
                 mas.add(id)
@@ -176,6 +178,5 @@ class ThirdActivity : AppCompatActivity(){
         }
         return true
     }
-
 
 }
