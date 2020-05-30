@@ -16,6 +16,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,16 +25,16 @@ import androidx.core.graphics.green
 import androidx.core.graphics.red
 import com.example.uiux.roflan.Companion.bitmap
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.editor_main.*
+import kotlinx.android.synthetic.main.layout_popup.*
+import kotlinx.android.synthetic.main.scale_popup.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.util.*
-import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.roundToInt
+import kotlin.math.*
 
 class Main2Activity : AppCompatActivity(), View.OnTouchListener {
     lateinit var myDialog: Dialog
@@ -71,7 +72,8 @@ class Main2Activity : AppCompatActivity(), View.OnTouchListener {
                 Gravity.CENTER,
                 0,
                 0
-            ) }
+            )
+        }
 
 
         btn_scaling.setOnClickListener {
@@ -434,6 +436,52 @@ class Main2Activity : AppCompatActivity(), View.OnTouchListener {
         image_view2.setImageBitmap(ggbmap);
     }
 
+    private fun rottateImage(degrees: Int) {
+
+        val bmap: Bitmap = ggbmap
+        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+        val mImageWidth = 900
+        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
+        val rad = (degrees * 3.1415926535f) / 180f
+        val cosf = cos(rad)
+        val sinf = sin(rad)
+
+        val nWidth: Int = mBitmap.width
+        val nHeight: Int = mBitmap.height
+
+        val x1 = (-nHeight * sinf).toInt()
+        val y1 = (nHeight * cosf).toInt()
+        val x2 = (nWidth * cosf - nHeight * sinf).toInt()
+        val y2 = (nHeight * cosf + nWidth * sinf).toInt()
+        val x3 = (nWidth * cosf).toInt()
+        val y3 = (nWidth * sinf).toInt()
+
+        val minX = min(0, min(x1, min(x2, x3)))
+        val minY = min(0, min(y1, min(y2, y3)))
+        val maxX = max(0, max(x1, max(x2, x3)))
+        val maxY = max(0, max(y1, max(y2, y3)))
+
+        val w = maxX - minX
+        val h = maxY - minY
+        val bmp: Bitmap = Bitmap.createBitmap(w, h, mBitmap.config)
+
+
+        for (y in 0 until h)
+            for (x in 0 until w) {
+
+                val sourceX = ((x + minX) * cosf + (y + minY) * sinf).toInt()
+                val sourceY = ((y + minY) * cosf - (x + minX) * sinf).toInt()
+                if (sourceX in 0 until nWidth && sourceY in 0 until nHeight)
+                    bmp.setPixel(x, y, mBitmap.getPixel(sourceX, sourceY))
+                else
+                    bmp.setPixel(x, y, 0)
+            }
+        image_view.setImageBitmap(bmp);
+        ggbmap = (image_view.getDrawable() as BitmapDrawable).bitmap
+
+    }
+
     fun ShowDialog(){
         myDialog= Dialog(this)
         myDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -449,6 +497,7 @@ class Main2Activity : AppCompatActivity(), View.OnTouchListener {
         ok2.isEnabled=true
         ok2.setOnClickListener{
             myDialog.cancel()
+            mashtab((edittext.text).toString().toDouble())
         }
         myDialog.show()
     }
@@ -467,6 +516,7 @@ class Main2Activity : AppCompatActivity(), View.OnTouchListener {
         ok.isEnabled=true
         ok.setOnClickListener{
             myDialog.cancel()
+            rottateImage((edittext2.text).toString().toInt())
         }
         myDialog.show()
     }
