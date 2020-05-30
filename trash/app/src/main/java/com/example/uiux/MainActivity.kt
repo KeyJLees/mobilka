@@ -23,11 +23,12 @@ import kotlin.math.roundToInt
 
 class roflan(){
 
-    companion object{lateinit var bitmap: Bitmap}
+    companion object{lateinit var bitmap: Bitmap; var brightt: Double = 1.0}
 
 }
 
 class MainActivity : AppCompatActivity() {
+
     private val PICTURE_RESULT: Int = 1001
     var imageUri: Uri? = null
     private val IMAGE_PICK_CODE = 1;
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val CAMERA_PERMISSION_CODE = 100;
     private val STORAGE_PERMISSION_CODE = 101;
     private lateinit var gbmap: Bitmap
+    private var f = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,36 +45,20 @@ class MainActivity : AppCompatActivity() {
 
 
         main_card.setOnClickListener {
-            val intent = Intent(this, Main2Activity::class.java)
-            startActivity(intent)
+            checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE)
+            pickImageFromGallery(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         }
 
-
         camera_main.setOnClickListener {
-
 
             checkPermission(Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE)
             //permission already granted
             takePhoto(Manifest.permission.CAMERA);
 
-            val intent = Intent(this, Main2Activity::class.java)
-            val bmap: Bitmap = (image_view.getDrawable() as BitmapDrawable).bitmap
-            val aspectRatio: Float = bmap.height.toFloat() / bmap.width
-            val displayMetrics: DisplayMetrics = resources.displayMetrics
-            val mImageWidth = displayMetrics.widthPixels
-            val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
-            val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
-            roflan.bitmap = mBitmap
-            startActivity(intent)
-
         }
 
-
-
     }
-
-
 
     private fun checkPermission(permission: String, requestCode: Int) {
 
@@ -98,8 +84,6 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
     }
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,
@@ -154,21 +138,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    fun takePhoto(permission: String){
-        var values = ContentValues()
-        values.put(MediaStore.Images.Media.TITLE, "New Picture")
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera")
-        imageUri = contentResolver.insert(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values
-        )
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
-        startActivityForResult(intent, PICTURE_RESULT)
+    private fun takePhoto(permission: String){
+        if (ContextCompat.checkSelfPermission(
+                this@MainActivity,
+                permission
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            var values = ContentValues()
+            values.put(MediaStore.Images.Media.TITLE, "New Picture")
+            values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera")
+            imageUri = contentResolver.insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values
+            )
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            startActivityForResult(intent, CAMERA)
+        }
     }
 
 
-    fun pickImageFromGallery(permission: String) {
+    private fun pickImageFromGallery(permission: String) {
         if (ContextCompat.checkSelfPermission(
                 this@MainActivity,
                 permission
@@ -181,39 +171,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            PICTURE_RESULT -> if (requestCode == PICTURE_RESULT) if (resultCode == Activity.RESULT_OK) {
-                try {
-                    var thumbnail = MediaStore.Images.Media.getBitmap(
-                        contentResolver, imageUri
-                    )
-                    image_view.setImageBitmap(thumbnail)
-                    var imageurl = getRealPathFromURI(imageUri)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+            image_view.setImageURI(data?.data)
+            gbmap = (image_view.getDrawable() as BitmapDrawable).bitmap
+            f = true
+        }
+        else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA){
+            try {
+                var thumbnail = MediaStore.Images.Media.getBitmap(
+                    contentResolver, imageUri
+                )
+                gbmap = thumbnail
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
+            f = true
+        }
+        if (f == true) {
+            roflan.bitmap = gbmap
+            val intent = Intent(this, Main2Activity::class.java)
+            startActivity(intent)
         }
     }
-
-
-    fun getRealPathFromURI(contentUri: Uri?): String? {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor: Cursor = managedQuery(contentUri, proj, null, null, null)
-        val column_index: Int = cursor
-            .getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        cursor.moveToFirst()
-        return cursor.getString(column_index)
-    }
-
-
 
 }
 
