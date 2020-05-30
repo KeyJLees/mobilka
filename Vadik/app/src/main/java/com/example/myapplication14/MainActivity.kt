@@ -37,10 +37,6 @@ class MainActivity : AppCompatActivity() {
     private val CAMERA_PERMISSION_CODE = 100;
     private val STORAGE_PERMISSION_CODE = 101;
     private lateinit var gbmap: Bitmap
-    private var f = false
-    private var t = false
-    private var l = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun nextSlide(view: View) {
             val intent = Intent(this, SecondActivity::class.java)
-            val bmap: Bitmap = (image_view.getDrawable() as BitmapDrawable).bitmap
+            val bmap: Bitmap = (image_view.drawable as BitmapDrawable).bitmap
             val aspectRatio: Float = bmap.height.toFloat() / bmap.width
             val mImageWidth = 700
             val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
@@ -210,7 +206,6 @@ class MainActivity : AppCompatActivity() {
             }
             image_view.setImageBitmap(gbmap);
         }
-        l = true
     }
 
 

@@ -6,7 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            tools:ignore="MissingConstraints">
     <ImageView
         android:id="@+id/image_view2"
         android:layout_width="350dp"
@@ -21,33 +26,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+        </LinearLayout>
 
     <Button
         android:id="@+id/next_slide"
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="@null"
         android:foreground="@drawable/ic_navigate_next_black_24dp"
         android:onClick="nextSlide2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="273dp"
-        tools:layout_editor_absoluteY="596dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/prev_Slide"
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="14dp"
         android:background="@null"
         android:foreground="@drawable/ic2_navigate_before_black_24dp"
         android:onClick="prevSlide"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="596dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="MissingConstraints" />
 
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="292dp"
         android:max="15"
         android:progress="10"
@@ -55,7 +68,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
         tools:ignore="MissingConstraints" />
+
 
     <Button
         android:id="@+id/button3"
@@ -79,18 +94,19 @@
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:background="@drawable/sepia"
+        tools:ignore="MissingConstraints"
         android:text="sepia"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="160dp"
+        tools:ignore="MissingConstraints"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="400dp"
         android:background="@drawable/whiteblack"
@@ -98,8 +114,7 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button5"
@@ -120,61 +135,77 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="34dp"
         android:text="Enter scaling factor:"
         android:textSize="17sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="502dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/edit_text2"
         android:layout_width="60dp"
         android:layout_height="40dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginRight="120dp"
         android:autofillHints=""
         android:inputType="text"
-        tools:ignore="HardcodedText,LabelFor,MissingConstraints"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="502dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_rotate"
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
         android:background="@color/lightgray"
         android:foreground="@drawable/ic_457711"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="596dp" />
+        app:layout_constraintEnd_toStartOf="@+id/image_scaling"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
         android:text="Enter rotation angle:"
         android:textSize="17sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="542dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="MissingConstraints" />
 
 
     <EditText
         android:id="@+id/edit_text3"
         android:layout_width="60dp"
         android:layout_height="40dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginRight="119dp"
         android:autofillHints=""
         android:inputType="text"
-        tools:ignore="HardcodedText,LabelFor,MissingConstraints"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="542dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text2"
+        tools:ignore="HardcodedText,LabelFor,MissingConstraints" />
 
     <Button
         android:id="@+id/image_scaling"
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:foreground="@drawable/maximize_icon"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="188dp"
-        tools:layout_editor_absoluteY="596dp" />
+        app:layout_constraintEnd_toStartOf="@+id/next_slide"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text3"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/mask"
@@ -188,18 +219,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.555" />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
     <Button
         android:id="@+id/saveImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginStart="4dp"
+        tools:ignore="MissingConstraints"
         android:foreground="@drawable/ic_save"
         android:layout_marginBottom="720dp"
         android:text="saveImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
+        </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
