@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <ImageView
+            android:id="@+id/image_view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/btn_filters"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="60dp"
+            android:background="@color/lightgray"
+            android:foreground="@drawable/ic_filters"
+            android:layout_marginLeft="60dp" />
+
+        <Button
+            android:id="@+id/btn_rotate"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/lightgray"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="150dp"
+            android:foreground="@drawable/ic_457711"
+            android:layout_marginStart="50dp" />
+
+        <Button
+            android:id="@+id/btn_scaling"
+            android:layout_width="40dp"
+            android:foreground="@drawable/maximize_icon"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="150dp"
+            android:background="@color/lightgray"
+            android:layout_marginStart="50dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filters"
+            android:textColor="@color/black"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="Rotate"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="49dp"
+            android:text="Scaling"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save image" />
+</LinearLayout>
