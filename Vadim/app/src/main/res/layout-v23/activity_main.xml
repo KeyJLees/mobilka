@@ -17,11 +17,87 @@
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.682"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464"
+        app:layout_constraintVertical_bias="0.594"
         tools:ignore="HardcodedText,LabelFor" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="301dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="260dp"
+        android:text="Введите количество градусов:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.505" />
+
+    <Button
+        android:id="@+id/next_Slide"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="60dp"
+        android:background="@null"
+        android:foreground="@drawable/ic_navigate_next_black_24dp"
+        android:onClick="nextSlide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/rotate_img_left"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="604dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:foreground="@drawable/ic_rotate_left_black_24dp"
+        android:src="@drawable/ic_rotate_left_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/img_pick_btn"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="604dp"
+        android:layout_marginEnd="90dp"
+        android:background="@null"
+        android:foreground="@drawable/ic_add_to_photos_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/img_pick_btn2"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="604dp"
+        android:layout_marginEnd="50dp"
+        android:background="@null"
+        android:foreground="@drawable/ic_camera_alt_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/img_pick_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/image_view"
@@ -37,85 +113,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311"
+        app:layout_constraintVertical_bias="0.197"
         tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/img_pick_btn2"
-        android:layout_width="75dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="558dp"
-        android:layout_marginEnd="50dp"
-        android:background="@null"
-        android:foreground="@drawable/ic_camera_alt_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/img_pick_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/img_pick_btn"
-        android:layout_width="75dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="558dp"
-        android:layout_marginEnd="90dp"
-        android:background="@null"
-        android:foreground="@drawable/ic_add_to_photos_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/rotate_img_left"
-        android:layout_width="75dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="558dp"
-        android:layout_marginEnd="10dp"
-        android:background="@null"
-        android:foreground="@drawable/ic_rotate_left_black_24dp"
-        android:src="@drawable/ic_rotate_left_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/next_Slide"
-        android:onClick="nextSlide"
-        android:layout_width="75dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="185dp"
-        android:layout_marginTop="558dp"
-        android:layout_marginEnd="10dp"
-        android:background="@null"
-        android:foreground="@drawable/ic_navigate_next_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="301dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="260dp"
-        android:text="Введите количество градусов:"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.394" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
