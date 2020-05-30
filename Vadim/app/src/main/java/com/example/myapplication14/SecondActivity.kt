@@ -75,13 +75,13 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
         }
 
         image_scaling.setOnClickListener {
-            if(edit_text2.text.isNotEmpty()) {
+            if (edit_text2.text.isNotEmpty()) {
                 mashtab(edit_text2.text.toString().toDouble())
             }
         }
 
         mask.setOnClickListener {
-            sharpmasking(ggbmap, 5, 5.toFloat(), 2)
+            sharpmasking(5, 5.toFloat(), 2)
         }
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -101,10 +101,10 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
 
         saveImage.setOnClickListener {
             var bitmap = (image_view2.drawable as BitmapDrawable).bitmap
-            if(bitmap != null){
+            if (bitmap != null) {
                 // Save the bitmap to a file and display it into image view
                 val uri: Uri = saveImageToExternalStorage(bitmap)
-            }else{
+            } else {
                 Toast.makeText(this, "Изображение не найдено", Toast.LENGTH_SHORT).show()
             }
         }
@@ -113,19 +113,17 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
 
     }
 
-    fun prevSlide(view: View)
-    {
-        val randomIntent= Intent(this, MainActivity::class.java)
+    fun prevSlide(view: View) {
+        val randomIntent = Intent(this, MainActivity::class.java)
         startActivity(randomIntent)
     }
 
-    fun nextSlide(view: View)
-    {
-        val randomIntent= Intent(this,ThirdActivity::class.java)
+    fun nextSlide(view: View) {
+        val randomIntent = Intent(this, ThirdActivity::class.java)
         startActivity(randomIntent)
     }
 
-    private fun saveImageToExternalStorage(bitmap:Bitmap): Uri {
+    private fun saveImageToExternalStorage(bitmap: Bitmap): Uri {
         // Get the external storage directory path
         val path = Environment.getExternalStorageDirectory().toString()
 
@@ -145,7 +143,7 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                 Log.i("ExternalStorage", "-> uri=$uri")
             }
 
-        } catch (e: IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
             Toast.makeText(this, "So bad", Toast.LENGTH_SHORT).show()
 
@@ -167,19 +165,19 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
         val nHeight: Int = mBitmap.height
         val bmp: Bitmap = Bitmap.createBitmap(nWidth, nHeight, mBitmap.config)
         for (y in 0 until nHeight)
-            for (x in 0 until nWidth){
+            for (x in 0 until nWidth) {
                 val r = mBitmap.getPixel(x, y).red
                 val g = mBitmap.getPixel(x, y).green
                 val b = mBitmap.getPixel(x, y).blue
                 var red: Int = (r * brightness).toInt()
-                red = min(255, max(0,red))
+                red = min(255, max(0, red))
                 var green: Int = (g * brightness).toInt()
-                green = min(255, max(0,green))
+                green = min(255, max(0, green))
                 var blue: Int = (b * brightness).toInt()
-                blue = min(255, max(0,blue))
-                bmp.setPixel(x,y, Color.rgb(red, green, blue))
+                blue = min(255, max(0, blue))
+                bmp.setPixel(x, y, Color.rgb(red, green, blue))
             }
-        ggbmap = bmap
+        ggbmap = bmp
         image_view2.setImageBitmap(bmp);
     }
 
@@ -198,7 +196,7 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                 val r = mBitmap.getPixel(x, y).red
                 val g = mBitmap.getPixel(x, y).green
                 val b = mBitmap.getPixel(x, y).blue
-                bmp.setPixel(x,y, Color.rgb(255 - r, 255 - g, 255 - b))
+                bmp.setPixel(x, y, Color.rgb(255 - r, 255 - g, 255 - b))
             }
         image_view2.setImageBitmap(bmp);
 
@@ -222,11 +220,10 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                 val g = mBitmap.getPixel(x, y).green
                 val b = mBitmap.getPixel(x, y).blue
                 val total: Double = (r + g + b).toDouble()
-                if (total > separator){
-                    bmp.setPixel(x,y, Color.rgb(255, 255, 255))
-                }
-                else {
-                    bmp.setPixel(x,y, Color.rgb(0, 0, 0))
+                if (total > separator) {
+                    bmp.setPixel(x, y, Color.rgb(255, 255, 255))
+                } else {
+                    bmp.setPixel(x, y, Color.rgb(0, 0, 0))
                 }
             }
         image_view2.setImageBitmap(bmp);
@@ -249,7 +246,7 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                 val g = mBitmap.getPixel(x, y).green
                 val b = mBitmap.getPixel(x, y).blue
                 val grayy: Int = (r * 0.2126 + g * 0.7152 + b * 0.0722).toInt()
-                bmp.setPixel(x,y, Color.rgb(grayy, grayy, grayy))
+                bmp.setPixel(x, y, Color.rgb(grayy, grayy, grayy))
             }
         image_view2.setImageBitmap(bmp);
     }
@@ -273,7 +270,7 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                 val red: Int = (r * 0.393 + g * 0.769 + b * 0.189).toInt()
                 val green = (r * 0.349 + g * 0.686 + b * 0.168).toInt()
                 val blue = (r * 0.272 + g * 0.534 + b * 0.131).toInt()
-                bmp.setPixel(x,y, Color.rgb(red, green, blue))
+                bmp.setPixel(x, y, Color.rgb(red, green, blue))
             }
         image_view2.setImageBitmap(bmp);
     }
@@ -291,12 +288,13 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
 
         for (y in 0 until nHeight)
             for (x in 0 until nWidth) {
-                val r = mBitmap.getPixel((x / koef).toInt(), (y/koef).toInt())
+                val r = mBitmap.getPixel((x / koef).toInt(), (y / koef).toInt())
                 bmp.setPixel(x, y, r)
             }
         ggbmap = bmap
         image_view2.setImageBitmap(bmp);
     }
+
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         val action = event!!.action
         var motionTouchEventX = event!!.x
@@ -313,8 +311,8 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                 Pix.clear()
             }
             MotionEvent.ACTION_MOVE -> {
-                for(i in -19 until 20){
-                    for(j in -19 until 20) {
+                for (i in -19 until 20) {
+                    for (j in -19 until 20) {
                         var x = (motionTouchEventX) + j
                         var y = (motionTouchEventY) + i
                         if (x > 0 && x < ggbmap.width && y > 0 && y < ggbmap.height) {
@@ -348,6 +346,7 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
         }
         return true
     }
+
     private fun retush() {
         val coof = 0.2
         val bmap: Bitmap = ggbmap
@@ -366,24 +365,29 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
             g += ((PixelGreen - g) * coof).toInt()
             b += ((PixelBlue - b) * coof).toInt()
             ggbmap.setPixel((Pix[cc].X).toInt(), (Pix[cc].Y).toInt(), Color.rgb(r, g, b))
-            }
+        }
         image_view2.setImageBitmap(ggbmap);
     }
 
-    private fun sharpmasking(bmap: Bitmap, radius: Int, amount:Float, threshold: Int){
+    private fun sharpmasking(radius: Int, amount: Float, threshold: Int) {
+        val bmap: Bitmap = ggbmap
+        val aspectRatio: Float = bmap.height.toFloat() / bmap.width
+        val mImageWidth = 700
+        val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
+        val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
 
-        val Photo = boxBlur(bmap!!, radius)
-        val originalPixels =  Array(bmap!!.width, {IntArray(bmap!!.height)})
-        val blurredPixels = Array(Photo!!.width, {IntArray(Photo!!.height)})
+        val Photo = boxBlur(mBitmap!!, radius)
+        val originalPixels = Array(mBitmap!!.width, { IntArray(bmap!!.height) })
+        val blurredPixels = Array(Photo!!.width, { IntArray(Photo!!.height) })
 
-        for (j in 0 until bmap!!.height) {
-            for (i in 0 until bmap!!.width) {
-                originalPixels[i][j] = bmap!!.getPixel(i, j)
+        for (j in 0 until mBitmap!!.height) {
+            for (i in 0 until mBitmap!!.width) {
+                originalPixels[i][j] = mBitmap!!.getPixel(i, j)
                 blurredPixels[i][j] = Photo!!.getPixel(i, j)
             }
         }
 
-        unsharpMask(bmap, originalPixels, blurredPixels, amount, threshold)
+        unsharpMask(mBitmap, originalPixels, blurredPixels, amount, threshold)
     }
 
     private fun unsharpMask(
@@ -391,7 +395,8 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
         origPixels: Array<IntArray>,
         blurredPixels: Array<IntArray>,
         amount: Float,
-        threshold: Int) {
+        threshold: Int
+    ) {
 
         val newBitmap = Bitmap.createBitmap(bmp!!.width, bmp!!.height, Bitmap.Config.ARGB_8888)
 
@@ -485,7 +490,8 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                     hits++
                 }
                 if (x >= 0) {
-                    newColors[x] = Color.rgb((r / hits).toInt(),
+                    newColors[x] = Color.rgb(
+                        (r / hits).toInt(),
                         (g / hits).toInt(), (b / hits).toInt()
                     )
                 }
@@ -530,7 +536,8 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                     hits++
                 }
                 if (y >= 0) {
-                    newColors[y] = Color.rgb((r / hits).toInt(),
+                    newColors[y] = Color.rgb(
+                        (r / hits).toInt(),
                         (g / hits).toInt(), (b / hits).toInt()
                     )
                 }
