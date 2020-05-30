@@ -201,6 +201,7 @@ class MainActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             image_view.setImageURI(data?.data)
             gbmap = (image_view.getDrawable() as BitmapDrawable).bitmap
+            rottateImage(image_view, 360)
         } else if (resultCode == Activity.RESULT_OK && requestCode == CAMERA) {
             try {
                 var thumbnail = MediaStore.Images.Media.getBitmap(
@@ -221,8 +222,7 @@ class MainActivity : AppCompatActivity() {
 
         val bmap: Bitmap = (view.getDrawable() as BitmapDrawable).bitmap
         val aspectRatio: Float = bmap.height.toFloat() / bmap.width
-        val displayMetrics: DisplayMetrics = resources.displayMetrics
-        val mImageWidth = displayMetrics.widthPixels
+        val mImageWidth = 700
         val mImageHeight = (mImageWidth * aspectRatio).roundToInt()
         val mBitmap = Bitmap.createScaledBitmap(bmap, mImageWidth, mImageHeight, false)
         val rad = (degrees * 3.1415926535f) / 180f

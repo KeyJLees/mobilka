@@ -81,7 +81,7 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
         }
 
         mask.setOnClickListener {
-            sharpmasking(5, 5.toFloat(), 2)
+            sharpmasking(5, 2.toFloat(), 2)
         }
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
