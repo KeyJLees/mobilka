@@ -157,7 +157,7 @@ class SecondActivity : AppCompatActivity(), View.OnTouchListener {
                     bmp.setPixel(x, y, 0)
             }
         image_view.setImageBitmap(bmp);
-        gbmap = (image_view.getDrawable() as BitmapDrawable).bitmap
+        ggbmap = (image_view.getDrawable() as BitmapDrawable).bitmap
 
     }
 

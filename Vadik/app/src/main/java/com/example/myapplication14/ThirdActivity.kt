@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.filters_main.*
 import java.util.*
 
 
-class ThirdActivity : AppCompatActivity(), View.OnTouchListener{
+class ThirdActivity : AppCompatActivity(), View.OnTouchListener {
 
 
     var graphView: GraphView? = null
@@ -26,7 +26,7 @@ class ThirdActivity : AppCompatActivity(), View.OnTouchListener{
         var Y = 0f
     }
 
-    private var mas: Vector<V> = Vector(0,1)
+    private var mas: Vector<V> = Vector(0, 1)
     private var X = 0f
     private var Y = 0f
 

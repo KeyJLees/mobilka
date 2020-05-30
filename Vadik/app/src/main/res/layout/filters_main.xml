@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+
     <ImageView
         android:id="@+id/image_view2"
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:layout_gravity="center"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/desc"
         android:scaleType="fitXY"
         android:src="@drawable/ic_image_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
 
     <Button
         android:id="@+id/next_slide"
@@ -31,7 +31,7 @@
         android:onClick="nextSlide2"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="273dp"
-        tools:layout_editor_absoluteY="569dp" />
+        tools:layout_editor_absoluteY="596dp" />
 
     <Button
         android:id="@+id/prev_Slide"
@@ -42,28 +42,28 @@
         android:onClick="prevSlide"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="569dp" />
+        tools:layout_editor_absoluteY="596dp" />
 
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="316dp"
+        android:layout_marginBottom="292dp"
         android:max="15"
         android:progress="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="368dp"
-        android:layout_marginEnd="196dp"
-        android:layout_marginRight="196dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="220dp"
+        android:layout_marginRight="220dp"
         android:background="@drawable/negative"
         android:text="negative"
         android:textSize="15sp"
@@ -73,11 +73,11 @@
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="368dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:background="@drawable/sepia"
         android:text="sepia"
         android:textColor="@color/white"
@@ -88,11 +88,11 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="188dp"
-        android:layout_marginLeft="188dp"
-        android:layout_marginTop="368dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/whiteblack"
         android:text="white-black"
         android:textColor="@color/white"
@@ -103,11 +103,11 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="368dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/grey"
         android:text="gray"
         android:textColor="@color/white"
@@ -124,7 +124,7 @@
         android:textSize="17sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="455dp" />
+        tools:layout_editor_absoluteY="502dp" />
 
     <EditText
         android:id="@+id/edit_text2"
@@ -133,8 +133,8 @@
         android:autofillHints=""
         android:inputType="text"
         tools:ignore="HardcodedText,LabelFor,MissingConstraints"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="455dp" />
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="502dp" />
 
     <Button
         android:id="@+id/btn_rotate"
@@ -144,7 +144,7 @@
         android:foreground="@drawable/ic_457711"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="569dp" />
+        tools:layout_editor_absoluteY="596dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -153,8 +153,9 @@
         android:text="Enter rotation angle:"
         android:textSize="17sp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="502dp" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="542dp" />
+
 
     <EditText
         android:id="@+id/edit_text3"
@@ -163,8 +164,8 @@
         android:autofillHints=""
         android:inputType="text"
         tools:ignore="HardcodedText,LabelFor,MissingConstraints"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="502dp" />
+        tools:layout_editor_absoluteX="181dp"
+        tools:layout_editor_absoluteY="542dp" />
 
     <Button
         android:id="@+id/image_scaling"
@@ -172,8 +173,33 @@
         android:layout_height="55dp"
         android:foreground="@drawable/maximize_icon"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="191dp"
-        tools:layout_editor_absoluteY="569dp" />
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="596dp" />
+
+    <Button
+        android:id="@+id/mask"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#A3EFDE"
+        android:text="masking"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <Button
+        android:id="@+id/saveImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:foreground="@drawable/ic_save"
+        android:layout_marginBottom="720dp"
+        android:text="saveImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
